@@ -1,11 +1,11 @@
-/* LIGHT MODE (DEFAULT) */
+/* BACKGROUND */
 body {
   margin: 0;
   font-family: Arial;
+  color: white;
   background: linear-gradient(-45deg, #081c4d, #3c1361, #7b2cbf, #ffb703);
   background-size: 400% 400%;
   animation: gradient 10s ease infinite;
-  color: white;
   transition: 0.5s;
 }
 
@@ -22,29 +22,101 @@ body {
 
 /* DARK MODE */
 body.dark {
-  background: linear-gradient(-45deg, #000000, #0b0f2a, #1a1a2e, #000000);
+  background: linear-gradient(-45deg, #000000, #0b0f2a, #111, #000);
 }
 
-/* Mode button */
+/* TITLE */
+.tribute-name {
+  color: #ff2d2d;
+  font-size: 22px;
+  font-weight: bold;
+  text-shadow: 0 0 15px red;
+}
+
+/* MODE BUTTON */
 .mode-btn {
   padding: 10px 15px;
-  margin: 10px;
-  border: none;
   border-radius: 20px;
+  border: none;
+  margin: 10px;
   cursor: pointer;
-  background: rgba(255,255,255,0.2);
+  background: linear-gradient(45deg, #ffb703, #ff006e);
   color: white;
 }
 
-/* Tribute name */
-.tribute-name {
-  color: red;
-  font-size: 22px;
-  font-weight: bold;
-  text-shadow: 0 0 10px red;
+/* BUTTONS */
+button {
+  padding: 12px 18px;
+  margin: 8px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  background: rgba(255,255,255,0.18);
+  color: white;
+  transition: 0.3s;
 }
 
-/* Candle */
+button:hover {
+  transform: scale(1.08);
+}
+
+/* MESSAGE BOX */
+.message-box {
+  margin: 20px auto;
+  padding: 25px;
+  width: 80%;
+  min-height: 90px;
+  border-radius: 15px;
+  background: rgba(0,0,0,0.35);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  opacity: 1;
+}
+
+/* TEXTAREA (BRIGHT + ATTRACTIVE) */
+textarea {
+  width: 80%;
+  height: 110px;
+  padding: 15px;
+  border-radius: 15px;
+  border: none;
+
+  background: linear-gradient(135deg, #ffb703, #ff006e);
+  color: white;
+
+  font-size: 15px;
+  outline: none;
+
+  box-shadow: 0 0 15px rgba(255,0,110,0.5);
+}
+
+textarea::placeholder {
+  color: rgba(255,255,255,0.85);
+}
+
+/* FILE BUTTON (CHOOSER STYLE FIX) */
+input[type="file"] {
+  padding: 10px;
+  color: white;
+  background: linear-gradient(45deg, #7b2cbf, #ff006e);
+  border-radius: 12px;
+}
+
+/* MEMORY */
+.memory-card {
+  background: rgba(255,255,255,0.15);
+  padding: 15px;
+  margin: 10px auto;
+  width: 80%;
+  border-radius: 15px;
+  transition: 0.5s;
+}
+
+.memory-card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* CANDLE */
 .candle {
   position: relative;
   width: 60px;
@@ -55,9 +127,9 @@ body.dark {
 .wax {
   width: 40px;
   height: 100px;
-  background: #f5f5f5;
-  margin: auto;
+  background: white;
   border-radius: 10px;
+  margin: auto;
 }
 
 .wick {
@@ -85,72 +157,13 @@ body.dark {
   to {transform: translateX(-50%) scale(1.2);}
 }
 
-/* Buttons */
-button {
-  padding: 12px 18px;
-  margin: 8px;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  background: rgba(255,255,255,0.2);
-  color: white;
-}
-
-/* Message */
-.message-box {
-  margin: 20px auto;
-  padding: 20px;
-  width: 80%;
-  background: rgba(0,0,0,0.3);
-  border-radius: 15px;
-  min-height: 80px;
-}
-
-/* Memory */
-.memory-section {
-  margin-top: 40px;
-}
-
-textarea {
-  width: 80%;
-  height: 100px;
-  border-radius: 10px;
-  padding: 10px;
-  border: none;
-}
-
-input[type="file"] {
-  margin-top: 10px;
-  color: white;
-}
-
-#memoryGallery {
-  margin-top: 20px;
-}
-
-.memory-card {
-  background: rgba(255,255,255,0.15);
-  padding: 15px;
-  margin: 10px auto;
-  width: 80%;
-  border-radius: 15px;
-}
-
-.memory-card img {
-  width: 100%;
-  border-radius: 10px;
-}
-
 /* DOVE */
 #dove {
   position: fixed;
-  top: 50%;
-  left: -100px;
   width: 60px;
   height: 60px;
   background-image: url("https://upload.wikimedia.org/wikipedia/commons/4/4b/White_dove_icon.svg");
   background-size: cover;
-  opacity: 0.8;
   animation: fly 12s linear infinite;
 }
 
