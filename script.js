@@ -1,96 +1,84 @@
 const messageBox = document.getElementById("messageBox");
 
-const messages = {
-  lonely: `
-    Even in your quietest moments,
-    your brother's love still surrounds you.
-    You are never truly alone.
-  `,
-
-  strength: `
-    Your brother's story lives through your courage.
-    Every day you keep moving,
-    you honor him.
-  `,
-
-  memory: `
-    Missing him means the bond was real.
-    Love this deep never disappears.
-    It simply changes form.
-  `,
-
-  hope: `
-    The pain may feel heavy today,
-    but healing comes one day at a time.
-    Your future still holds light.
-  `
-};
-
+/* Messages */
 function showMessage(type) {
-  messageBox.classList.remove("show");
+  const messages = {
+    strength: "Stay strong. Love continues through you.",
+    lonely: "You are never truly alone. He is always remembered.",
+    memory: "Every memory is a piece of love that never fades.",
+    hope: "Healing takes time, but light will return.",
+    support: "You are not alone. I will always be here for you anytime you need someone to talk to."
+  };
 
-  setTimeout(() => {
-    messageBox.innerHTML = messages[type];
-    messageBox.classList.add("show");
-  }, 300);
+  messageBox.innerText = messages[type];
 }
 
-/* Strength counter */
-let days = 0;
+/* MEMORY SYSTEM */
+let memories = JSON.parse(localStorage.getItem("memories")) || [];
 
-document.getElementById("dayBtn").addEventListener("click", () => {
-  days++;
-  document.getElementById(
-    "counterText"
-  ).innerText = `Strong Days: ${days}`;
-});
-
-/* Create floating stars */
-const starsContainer = document.getElementById("stars");
-
-for(let i = 0; i < 60; i++) {
-  const star = document.createElement("div");
-
-  star.classList.add("star");
-
-  star.style.left = Math.random() * 100 + "%";
-
-  star.style.animationDuration =
-    Math.random() * 5 + 4 + "s";
-
-  star.style.animationDelay =
-    Math.random() * 5 + "s";
-
-  starsContainer.appendChild(star);
-}
-function addMemory() {
-  const fileInput = document.getElementById("photoInput");
-  const textInput = document.getElementById("memoryText");
+function renderMemories() {
   const gallery = document.getElementById("memoryGallery");
+  gallery.innerHTML = "";
 
-  const file = fileInput.files[0];
+  memories.forEach(mem => {
+    const div = document.createElement("div");
+    div.classList.add("memory-card");
 
-  if (!file || textInput.value.trim() === "") {
-    alert("Please upload a photo and write a memory.");
+    div.innerHTML = `
+      <img src="${mem.image}">
+      <p>${mem.text}</p>
+    `;
+
+    gallery.appendChild(div);
+  });
+}
+
+function addMemory() {
+  const file = document.getElementById("photoInput").files[0];
+  const text = document.getElementById("memoryText").value;
+
+  if (!file || text.trim() === "") {
+    alert("Please upload image and write memory");
     return;
   }
 
   const reader = new FileReader();
 
   reader.onload = function(e) {
-    const card = document.createElement("div");
-    card.classList.add("memory-card");
+    memories.push({
+      image: e.target.result,
+      text: text
+    });
 
-    card.innerHTML = `
-      <img src="${e.target.result}">
-      <p>${textInput.value}</p>
-    `;
-
-    gallery.prepend(card);
-
-    fileInput.value = "";
-    textInput.value = "";
+    localStorage.setItem("memories", JSON.stringify(memories));
+    renderMemories();
   };
 
   reader.readAsDataURL(file);
+
+  document.getElementById("photoInput").value = "";
+  document.getElementById("memoryText").value = "";
+}
+
+renderMemories();
+
+/* DARK MODE TOGGLE */
+function toggleMode() {
+  document.body.classList.toggle("dark");
+}
+
+/* FLOATING STARS */
+const stars = document.getElementById("stars");
+
+for (let i = 0; i < 60; i++) {
+  const s = document.createElement("div");
+  s.style.position = "absolute";
+  s.style.width = "3px";
+  s.style.height = "3px";
+  s.style.background = "white";
+  s.style.borderRadius = "50%";
+  s.style.left = Math.random() * 100 + "%";
+  s.style.top = Math.random() * 100 + "%";
+  s.style.opacity = Math.random();
+  stars.appendChild(s);
 }
