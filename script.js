@@ -1,78 +1,96 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>A Light That Never Leaves</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
+const messageBox = document.getElementById("messageBox");
 
-  <!-- Floating stars -->
-  <div id="stars"></div>
+const messages = {
+  lonely: `
+    Even in your quietest moments,
+    your brother's love still surrounds you.
+    You are never truly alone.
+  `,
 
-  <main class="container">
+  strength: `
+    Your brother's story lives through your courage.
+    Every day you keep moving,
+    you honor him.
+  `,
 
-    <h1 class="fade-in">A Light That Never Leaves</h1>
+  memory: `
+    Missing him means the bond was real.
+    Love this deep never disappears.
+    It simply changes form.
+  `,
 
-    <p class="subtitle fade-in-delay">
-      Mercy, love never disappears. Some people leave the world,
-      but never leave our hearts.
-    </p>
+  hope: `
+    The pain may feel heavy today,
+    but healing comes one day at a time.
+    Your future still holds light.
+  `
+};
 
-    <section class="buttons fade-in-delay-2">
+function showMessage(type) {
+  messageBox.classList.remove("show");
 
-      <button onclick="showMessage('lonely')">
-        I Feel Lonely
-      </button>
+  setTimeout(() => {
+    messageBox.innerHTML = messages[type];
+    messageBox.classList.add("show");
+  }, 300);
+}
 
-      <button onclick="showMessage('strength')">
-        I Need Strength
-      </button>
+/* Strength counter */
+let days = 0;
 
-      <button onclick="showMessage('memory')">
-        I Miss Him
-      </button>
+document.getElementById("dayBtn").addEventListener("click", () => {
+  days++;
+  document.getElementById(
+    "counterText"
+  ).innerText = `Strong Days: ${days}`;
+});
 
-      <button onclick="showMessage('hope')">
-        I Need Hope
-      </button>
+/* Create floating stars */
+const starsContainer = document.getElementById("stars");
 
-    </section>
-    <section class="memory-section">
-  <h2>Memories That Stay Forever</h2>
+for(let i = 0; i < 60; i++) {
+  const star = document.createElement("div");
 
-  <input type="file" id="photoInput" accept="image/*">
+  star.classList.add("star");
 
-  <textarea 
-    id="memoryText"
-    placeholder="Write a special memory...">
-  </textarea>
+  star.style.left = Math.random() * 100 + "%";
 
-  <button onclick="addMemory()">
-    Save Memory
-  </button>
+  star.style.animationDuration =
+    Math.random() * 5 + 4 + "s";
 
-  <div id="memoryGallery"></div>
-</section>
+  star.style.animationDelay =
+    Math.random() * 5 + "s";
 
-    <div class="message-box" id="messageBox">
-      Click a feeling above...
-    </div>
+  starsContainer.appendChild(star);
+}
+function addMemory() {
+  const fileInput = document.getElementById("photoInput");
+  const textInput = document.getElementById("memoryText");
+  const gallery = document.getElementById("memoryGallery");
 
-    <div class="counter-section">
-      <button id="dayBtn">
-        I Made It Through Today
-      </button>
+  const file = fileInput.files[0];
 
-      <p id="counterText">
-        Strong Days: 0
-      </p>
-    </div>
+  if (!file || textInput.value.trim() === "") {
+    alert("Please upload a photo and write a memory.");
+    return;
+  }
 
-  </main>
+  const reader = new FileReader();
 
-  <script src="script.js"></script>
+  reader.onload = function(e) {
+    const card = document.createElement("div");
+    card.classList.add("memory-card");
 
-</body>
-</html>
+    card.innerHTML = `
+      <img src="${e.target.result}">
+      <p>${textInput.value}</p>
+    `;
+
+    gallery.prepend(card);
+
+    fileInput.value = "";
+    textInput.value = "";
+  };
+
+  reader.readAsDataURL(file);
+}
