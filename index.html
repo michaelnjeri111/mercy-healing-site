@@ -9,61 +9,60 @@
 
 <body>
 
-  <div id="stars"></div>
-  <div id="dove"></div>
+<div id="stars"></div>
+<div id="dove"></div>
 
-  <main class="container">
+<main class="container">
 
-    <h1>A Light That Never Leaves</h1>
+  <h1>A Light That Never Leaves</h1>
 
-    <p class="tribute-name">In loving memory of Marvin Kizito</p>
+  <p class="tribute-name">In loving memory of Marvin Kizito</p>
 
-    <!-- Mode Toggle -->
-    <button class="mode-btn" onclick="toggleMode()">🌙 Toggle Healing Mode</button>
+  <button class="mode-btn" onclick="toggleMode()">🌙 Toggle Healing Mode</button>
 
-    <!-- Candle -->
-    <div class="candle">
-      <div class="flame"></div>
-      <div class="wick"></div>
-      <div class="wax"></div>
-    </div>
+  <!-- Candle -->
+  <div class="candle">
+    <div class="flame"></div>
+    <div class="wick"></div>
+    <div class="wax"></div>
+  </div>
 
-    <p class="subtitle">
-      Love never dies. It only changes form.
-    </p>
+  <p class="subtitle">
+    Love never disappears. It transforms into strength, memories, and light.
+  </p>
 
-    <!-- Buttons -->
-    <div class="buttons">
+  <!-- Buttons -->
+  <div class="buttons">
 
-      <button onclick="showMessage('strength')">I Need Strength</button>
-      <button onclick="showMessage('lonely')">I Feel Lonely</button>
-      <button onclick="showMessage('memory')">I Miss Him</button>
-      <button onclick="showMessage('hope')">I Need Hope</button>
-      <button onclick="showMessage('support')">I’m Here For You</button>
+    <button onclick="showMessage('strength')">I Need Strength</button>
+    <button onclick="showMessage('lonely')">I Feel Lonely</button>
+    <button onclick="showMessage('memory')">I Miss Him</button>
+    <button onclick="showMessage('hope')">I Need Hope</button>
+    <button onclick="showMessage('support')">I’m Here For You</button>
 
-    </div>
+  </div>
 
-    <div class="message-box" id="messageBox">
-      Click a button above...
-    </div>
+  <div class="message-box" id="messageBox">
+    Click any button to receive comfort...
+  </div>
 
-    <!-- Memory Section -->
-    <section class="memory-section">
+  <!-- Memory Section -->
+  <section class="memory-section">
 
-      <h2>Memory Wall</h2>
+    <h2>Memory Wall</h2>
 
-      <input type="file" id="photoInput" accept="image/*">
+    <input type="file" id="photoInput" accept="image/*">
 
-      <textarea id="memoryText" placeholder="Write your memory here..."></textarea>
+    <textarea id="memoryText" placeholder="Write your memory..."></textarea>
 
-      <button onclick="addMemory()">Save Memory</button>
+    <button onclick="addMemory()">Save Memory</button>
 
-      <div id="memoryGallery"></div>
+    <div id="memoryGallery"></div>
 
-    </section>
+  </section>
 
-  </main>
+</main>
 
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
